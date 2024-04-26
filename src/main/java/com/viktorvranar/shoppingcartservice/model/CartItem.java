@@ -1,6 +1,8 @@
 package com.viktorvranar.shoppingcartservice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -10,14 +12,19 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Min(0)
     private Long offerId;
 
-    // Action type
+    @NotNull
     @Enumerated(EnumType.STRING)
-    private ActionType action;
+    private ActionType actionType;
 
-    private int quantity;
+    @NotNull
+    @Min(0)
+    private Integer quantity;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "price_id", referencedColumnName = "id")
     private Price price;

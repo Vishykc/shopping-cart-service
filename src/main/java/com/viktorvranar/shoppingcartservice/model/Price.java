@@ -1,5 +1,7 @@
 package com.viktorvranar.shoppingcartservice.model;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import jakarta.persistence.*;
 
@@ -10,11 +12,14 @@ public class Price {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private PriceType type;
 
-    private double priceValue; // value is a reserved keyword
+    @NotNull
+    private Double priceValue; // value is a reserved keyword
 
-    private int recurrence; // number of recurrences (only for recurring price)
+    @Min(1)
+    private Integer recurrence; // number of recurrences (only for recurring price)
 }
 
