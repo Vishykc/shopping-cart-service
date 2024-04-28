@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class StatisticsController {
+
+    private static final Logger logger = LoggerFactory.getLogger(StatisticsController.class);
 
     private final StatisticsService statisticsService;
 
@@ -28,8 +32,15 @@ public class StatisticsController {
             @RequestParam LocalDate startDate,
             @RequestParam LocalDate endDate) {
 
-        int statistics = statisticsService.calculateStatistics(offerId, actionType, startDate, endDate);
+        try {
+            int statistics = statisticsService.calculateStatistics(offerId, actionType, startDate, endDate);
 
-        return new ResponseEntity<>(statistics, HttpStatus.OK);
+            return new ResponseEntity<>(statistics, HttpStatus.OK);
+
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching statistics: {}", e.getMessage());
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
