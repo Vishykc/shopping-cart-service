@@ -1,12 +1,18 @@
 package com.viktorvranar.shoppingcartservice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
+@Table(name = "cart_items")
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,19 +20,25 @@ public class CartItem {
 
     @NotNull
     @Min(0)
+    @Column(name = "offer_id")
     private Long offerId;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private ActionType actionType;
+    @Column(name = "action")
+    private ActionType action;
 
     @NotNull
     @Min(0)
+    @Column(name = "quantity")
     private Integer quantity;
 
-    @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "price_id", referencedColumnName = "id")
-    private Price price;
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "fk_cartItem_id", referencedColumnName = "id")
+    private List<@Valid Price> prices;
 }
 
