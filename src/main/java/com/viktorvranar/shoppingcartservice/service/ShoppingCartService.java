@@ -33,6 +33,13 @@ public class ShoppingCartService {
     public Cart addItemToCart(Long customerId, CartItem newItem) {
 
         try {
+
+            // Ensure that every CartItem has at least 1 price
+            if (newItem.getPrices() == null || newItem.getPrices().isEmpty()) {
+
+                throw new IllegalArgumentException("CartItem must have at least 1 price");
+            }
+
             Cart existingCart = cartRepository.findByCustomerId(customerId);
 
             if (existingCart == null) {
