@@ -38,7 +38,7 @@ public class CartItem {
     private LocalDateTime createdAt;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "fk_cartItem_id", referencedColumnName = "id")
+    @JoinColumn(name = "fk_cart_item_id", referencedColumnName = "id")
     private List<@Valid Price> prices;
 }
 

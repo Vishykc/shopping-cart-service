@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 
 @Data
 @Entity
+@Table(name = "prices")
 public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +15,15 @@ public class Price {
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private PriceType type;
 
     @NotNull
+    @Column(name = "price_value")
     private Double priceValue; // value is a reserved keyword
 
     @Min(1)
+    @Column(name = "recurrence")
     private Integer recurrence; // number of recurrences (only for recurring price)
 }
 
