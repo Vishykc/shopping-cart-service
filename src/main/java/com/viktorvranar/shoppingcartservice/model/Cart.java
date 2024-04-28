@@ -2,7 +2,6 @@ package com.viktorvranar.shoppingcartservice.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,4 +19,3 @@ public class Cart {
     @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
     private List<CartItem> items = new ArrayList<>();
 }
-

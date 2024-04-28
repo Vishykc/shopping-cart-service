@@ -4,4 +4,3 @@ public enum PriceType {
     RECURRING,
     ONE_TIME
 }
-

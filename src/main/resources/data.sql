@@ -154,4 +154,3 @@ INSERT INTO prices (type, price_value, recurrence, fk_cart_item_id)
 VALUES ('RECURRING', 20.0, 2, 15);
 INSERT INTO prices (type, price_value, recurrence, fk_cart_item_id)
 VALUES ('RECURRING', 30.0, 3, 15);
-

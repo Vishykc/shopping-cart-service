@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -41,4 +40,3 @@ public class CartItem {
     @JoinColumn(name = "fk_cart_item_id", referencedColumnName = "id")
     private List<@Valid Price> prices;
 }
-

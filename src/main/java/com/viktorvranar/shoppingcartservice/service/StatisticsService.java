@@ -6,9 +6,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-
 import com.viktorvranar.shoppingcartservice.model.CartItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
